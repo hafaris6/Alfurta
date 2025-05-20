@@ -2,14 +2,16 @@ import os
 import uuid
 import logging
 from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 
 # Set up logging
 logging.basicConfig(level=logging.DEBUG)
 
+# create the app
 app = Flask(__name__)
 app.secret_key = os.environ.get("SESSION_SECRET", "dev_secret_key")
 
-# In-memory data storage
+# In-memory data until we fully migrate to the database
 products = []
 merchants = []
 
