@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}الصفحة الرئيسية - سوق الفرات{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="text-center mb-4">مرحباً بك في سوق الفرات</h1>
+        <p class="text-center mb-5">المكان الأمثل للعثور على المنتجات المميزة والتواصل مع التجار مباشرةً</p>
+    </div>
+</div>
+
+{% if products %}
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="{{ product.image }}" class="card-img-top product-image" alt="{{ product.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="price-tag">{{ product.price }} $</span>
+                        <a href="https://wa.me/963{{ product.phone }}?text=أنا مهتم بمنتج {{ product.name }}" class="btn btn-success" target="_blank">
+                            <i class="fab fa-whatsapp me-1"></i> تواصل عبر واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-info text-center">
+        لا توجد منتجات متاحة حالياً
+    </div>
+{% endif %}
+
+<div class="mt-5 text-center">
+    {% if 'merchant_id' not in session %}
+        <div class="merchant-info p-4 mb-5 bg-light rounded">
+            <h3>هل أنت تاجر؟</h3>
+            <p>انضم إلينا الآن وابدأ في عرض منتجاتك للعملاء</p>
+            <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">تسجيل الدخول كتاجر</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

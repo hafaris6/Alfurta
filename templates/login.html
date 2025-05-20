@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}تسجيل الدخول - سوق الفرات{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white text-center">
+                <h3>تسجيل الدخول كتاجر</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('login') }}">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">الاسم الكامل</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">رقم الهاتف (بدون رمز الدولة)</label>
+                        <div class="input-group">
+                            <span class="input-group-text">963</span>
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="رقم الهاتف بدون 963" required>
+                        </div>
+                        <div class="form-text">سيتم استخدام هذا الرقم للتواصل عبر واتساب</div>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">تسجيل الدخول / إنشاء حساب</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                <small class="text-muted">إذا كنت تملك حساباً، سيتم تسجيل دخولك. وإلا، سيتم إنشاء حساب جديد تلقائياً.</small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
